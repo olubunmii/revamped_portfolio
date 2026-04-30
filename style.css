@@ -523,6 +523,7 @@ footer .container {
     height: 56px;
     padding: 0.4rem 0.7rem;
     border-radius: 12px;
+    cursor: grab;
   }
 
   .music__art {

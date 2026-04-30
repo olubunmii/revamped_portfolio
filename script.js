@@ -62,9 +62,78 @@ function initSmoothScroll() {
   });
 }
 
+function initDraggableWidget() {
+  const widget = document.querySelector('.music-widget');
+  if (!widget) return;
+
+  let isDragging = false;
+  let offsetX = 0;
+  let offsetY = 0;
+
+  widget.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    offsetX = e.clientX - widget.getBoundingClientRect().left;
+    offsetY = e.clientY - widget.getBoundingClientRect().top;
+    widget.style.transition = 'none';
+    widget.style.cursor = 'grabbing';
+  });
+
+  document.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+
+    let newX = e.clientX - offsetX;
+    let newY = e.clientY - offsetY;
+
+    // Keep widget within viewport bounds
+    newX = Math.max(0, Math.min(newX, window.innerWidth - widget.offsetWidth));
+    newY = Math.max(0, Math.min(newY, window.innerHeight - widget.offsetHeight));
+
+    widget.style.left = newX + 'px';
+    widget.style.top = newY + 'px';
+    widget.style.right = 'auto';
+    widget.style.bottom = 'auto';
+  });
+
+  document.addEventListener('mouseup', () => {
+    isDragging = false;
+    widget.style.cursor = 'grab';
+  });
+
+  // Touch support for mobile
+  widget.addEventListener('touchstart', (e) => {
+    const touch = e.touches[0];
+    isDragging = true;
+    offsetX = touch.clientX - widget.getBoundingClientRect().left;
+    offsetY = touch.clientY - widget.getBoundingClientRect().top;
+    widget.style.transition = 'none';
+  });
+
+  document.addEventListener('touchmove', (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+
+    const touch = e.touches[0];
+    let newX = touch.clientX - offsetX;
+    let newY = touch.clientY - offsetY;
+
+    newX = Math.max(0, Math.min(newX, window.innerWidth - widget.offsetWidth));
+    newY = Math.max(0, Math.min(newY, window.innerHeight - widget.offsetHeight));
+
+    widget.style.left = newX + 'px';
+    widget.style.top = newY + 'px';
+    widget.style.right = 'auto';
+    widget.style.bottom = 'auto';
+  }, { passive: false });
+
+  document.addEventListener('touchend', () => {
+    isDragging = false;
+  });
+}
+
 // Initialize all scripts when DOM is loaded
 document.addEventListener("DOMContentLoaded", () => {
   initNavbarScroll();
   initMobileMenu();
   initSmoothScroll();
+  initDraggableWidget();
 });
