@@ -1,35 +1,6 @@
-// Technology skills list
-const technologies = [
-  // "JavaScript ", 
-  "HTML  5️⃣", 
-  "CSS 🎨", 
-  "Python 🐍", 
-  "Git 🧬", 
-  "Automation 🤖",
-  "End User Support 🛠️",
-  "Amazon Web Services ☁️",
-  "Responsive Design 🧩",  
-  "Web Development 👨🏾‍💻"
-];
-
 // DOM Elements
 const slider = document.querySelector(".slider");
 const navbar = document.getElementById("navbar");
-
-// Create and populate the technology carousel
-function initTechCarousel() {
-  if (!slider) return;
-  
-  // Create technology tags - duplicate for seamless loop
-  const loopedTechnologies = [...technologies, ...technologies, ...technologies, ...technologies];
-  
-  let carouselHTML = "";
-  loopedTechnologies.forEach((tech) => {
-    carouselHTML += `<button class="language">${tech}</button>`;
-  });
-  
-  slider.innerHTML = carouselHTML;
-}
 
 // Handle navbar scroll effect
 function initNavbarScroll() {
@@ -93,7 +64,6 @@ function initSmoothScroll() {
 
 // Initialize all scripts when DOM is loaded
 document.addEventListener("DOMContentLoaded", () => {
-  initTechCarousel();
   initNavbarScroll();
   initMobileMenu();
   initSmoothScroll();
