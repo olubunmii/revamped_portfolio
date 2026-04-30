@@ -273,94 +273,18 @@ p span {
   margin-right: 0.5rem;
 }
 
-/* Tech carousel */
-.tech-carousel {
-  margin-top: 2rem;
-  overflow: hidden;
-  position: relative;
-  width: 100%; /* Will take the width of .header__left */
-}
-
-.slider {
-  display: flex;
-  /* display: inline-block; */
-  animation: scroll 30s linear infinite;
-  gap: 1rem;
-}
-
-@keyframes scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-200%); } /* This makes the items scroll. If content is duplicated, it appears seamless. */
-}
-
-.language {
-  padding: 0.5rem 1rem;
-  background: var(--color-light);
-  color: var(--color-black);
-  border-radius: 4px;
-  font-weight: 500;
-  white-space: nowrap;
-  transition: all 300ms ease;
-  border: none;
-  cursor: default;
-}
-
-.language:hover {
-  background: var(--color-primary);
-  color: var(--color-white);
-}
 
 /* Footer */
 footer {
   background-color: var(--color-light);
-  padding: 2rem 0;
+  padding: 1rem 0;
   text-align: center;
 }
 
-footer ul {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  margin-bottom: 1rem;
+footer .container {
+  max-width: 400px;
 }
 
-footer ul li {
-  position: relative;
-}
-
-footer ul li::before {
-  content: "";
-  display: none;
-}
-
-footer ul li a {
-  color: var(--color-dark);
-  font-weight: 500;
-  transition: color 0.3s ease;
-  position: relative;
-}
-
-footer ul li a::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 2px;
-  bottom: -5px;
-  left: 0;
-  background-color: var(--color-primary);
-  transform: scaleX(0);
-  transform-origin: bottom right;
-  transition: transform 0.3s ease;
-}
-
-footer ul li a:hover {
-  color: var(--color-primary);
-}
-
-footer ul li a:hover::after {
-  transform: scaleX(1);
-  transform-origin: bottom left;
-}
 
 /* Media Queries - Adjustments for new centered layout */
 @media screen and (max-width: 1024px) {
@@ -482,7 +406,7 @@ footer ul li a:hover::after {
 .tracker__bar {
   width: 100%;
   height: 3px;
-  background: var(--color-light);
+  background: rgb(187, 187, 187);
   border-radius: 999px;
   overflow: hidden;
 }
@@ -588,4 +512,157 @@ footer ul li a:hover::after {
 @keyframes soundwave {
   0%, 100% { transform: scaleY(1); }
   50% { transform: scaleY(1.8); }
+}
+
+@media screen and (max-width: 768px) {
+  .music-widget {
+    width: calc(100% - 3rem);
+    top: 5.5rem;
+    left: 1.5rem;
+    right: 1.5rem;
+    height: 56px;
+    padding: 0.4rem 0.7rem;
+    border-radius: 12px;
+  }
+
+  .music__art {
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+  }
+
+  .music__title {
+    font-size: 0.72rem;
+  }
+
+  .music__artist {
+    font-size: 0.65rem;
+  }
+}
+
+/* ======== WRITING ============ */
+.writing {
+  width: 100%;
+  max-width: 400px;
+  margin: 2rem auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.writing__links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.writing__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  transition: all 300ms ease;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.writing__left {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.writing__icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+  transition: all 300ms ease;
+  flex-shrink: 0;
+}
+
+.writing__platform {
+  font-size: 0.82rem;
+  font-weight: 600;
+  transition: color 300ms ease;
+}
+
+.writing__description {
+  font-size: 0.72rem;
+  font-style: italic;
+  transition: color 300ms ease;
+}
+
+/* Medium — black base, orange hover */
+.writing__item--medium {
+  background: rgba(0,0,0,0.03);
+}
+
+.writing__item--medium .writing__icon {
+  background: var(--color-black);
+  color: var(--color-white);
+}
+
+.writing__item--medium .writing__platform,
+.writing__item--medium .writing__description {
+  color: var(--color-black);
+}
+
+.writing__item--medium:hover {
+  border-color: var(--color-primary);
+  transform: translateX(4px);
+}
+
+.writing__item--medium:hover .writing__icon {
+  background: var(--color-primary);
+}
+
+.writing__item--medium:hover .writing__platform,
+.writing__item--medium:hover .writing__description {
+  color: var(--color-primary);
+}
+
+/* Substack — orange base, black hover */
+.writing__item--substack {
+  background: rgba(255, 77, 0, 0.04);
+}
+
+.writing__item--substack .writing__icon {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+.writing__item--substack .writing__platform,
+.writing__item--substack .writing__description {
+  color: var(--color-primary);
+}
+
+.writing__item--substack:hover {
+  border-color: var(--color-black);
+  transform: translateX(4px);
+}
+
+.writing__item--substack:hover .writing__icon {
+  background: var(--color-black);
+}
+
+.writing__item--substack:hover .writing__platform,
+.writing__item--substack:hover .writing__description {
+  color: var(--color-black);
+}
+
+.section__label {
+  display: block;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-dark);
+  font-weight: 500;
+  max-width: 400px;
+  margin: 2rem auto 0.5rem;
 }
